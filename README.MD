@@ -1,9 +1,9 @@
 To access the module, you need to add this to your application configuration:
 
     ......
-    'modules' => [
+	'modules' => [
         'blogger' => [
-            'class' => 'frontend\modules\blogger\blogger',
+            'class' => 'adzadzadz\modules\blogger\blogger',
         ],
     ],
     ......
