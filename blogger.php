@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\modules\blogger;
+namespace adzadzadz\modules\blogger;
 
 class blogger extends \yii\base\Module
 {
-    public $controllerNamespace = 'frontend\modules\blogger\controllers';
+    public $controllerNamespace = 'adzadzadz\modules\blogger\controllers';
 
     public function init()
     {

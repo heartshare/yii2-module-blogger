@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\blogger\controllers;
+namespace adzadzadz\modules\blogger\controllers;
 
 use yii\web\Controller;
 
