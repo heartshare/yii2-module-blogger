@@ -4,7 +4,7 @@ To access the module, you need to add this to your application configuration:
 	'modules' => [
         'blogger' => [
             'class' => 'adzadzadz\modules\blogger\blogger',
-            //'viewPath' => __DIR__ . '/../../frontend/views', // (optional) Will use views from module if not set
+            //'viewPath' => __DIR__ . '/../../frontend/views', // (optional) blogger will use default views from adzadzadz/yii2-module-blogger/views if not set
             'aliases' => [
                 '@bloggerSample' => 'This is an alias sample', // echo \Yii::getAlias('@bloggerSample') ;
             ]
@@ -15,4 +15,5 @@ To access the module, you need to add this to your application configuration:
 # Migrations --helper
 
 # migrate the migrations in a module non-interactively
-yii migrate --migrationPath=vendor/adzadzadz/yii2-module-blogger/migrations --interactive=0
+- yii migrate --migrationPath=vendor/adzadzadz/yii2-module-blogger/migrations --interactive=0
+- Just access index.php?r=blogger to initialize everything.
