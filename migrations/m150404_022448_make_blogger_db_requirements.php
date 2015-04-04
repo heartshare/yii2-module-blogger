@@ -42,7 +42,6 @@ class m150404_022448_make_blogger_db_requirements extends Migration
             'title' => 'Sample blog post',
             'excerpt' => '',
             'content' => 'A very short sample content. Well at least it isn\'t weird.',
-            'access_key' => Schema::TYPE_STRING . ' NOT NULL',
         ]);
 
         $this->createTable('{{%blogger_postmeta}}', [

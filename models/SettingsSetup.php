@@ -12,9 +12,7 @@ class SettingsSetup extends BloggerSettings
 	public function getSettingByKey($key = null)
 	{
 		if($key !== null) {
-			return BloggerSettings::find()
-		    ->where(['key' => $key])
-		    ->limit(1)->one();
+			return BloggerSettings::findOne(['key' => $key]);
 		}
 		return false;
 	}
