@@ -1,7 +1,7 @@
 <?php
 	
-	$this->title = 'Posts'
-
+	$this->title = 'Posts';
+	
 ?>
 
 <div class="container">
@@ -19,7 +19,7 @@
 					<i>Updated at:</i> <strong><?= date("Y-m-d H:i:s", $post->updated_at) ?></strong> <br>
 				</footer>
 			</article>
-		<?php } ?>			
+		<?php } ?>
 		</aside>
 		<aside class="right sidebar col-sm-4">
 			

@@ -23,7 +23,7 @@ class m150404_022448_make_blogger_db_requirements extends Migration
     {
         $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
 
-        $this->createTable('{{%posts}}', [
+        $this->createTable('{{%blogger_posts}}', [
             'post_id' => 'pk',
             'type' => Schema::TYPE_STRING . ' NOT NULL',
             'title' => Schema::TYPE_TEXT . ' NOT NULL',
@@ -37,7 +37,15 @@ class m150404_022448_make_blogger_db_requirements extends Migration
             'updater_id' => Schema::TYPE_INTEGER . ' NOT NULL',
         ], $tableOptions);
 
-        $this->createTable('{{%post_meta}}', [
+        $this->insert('{{%blogger_posts}}', [
+            'type' => 'blog',
+            'title' => 'Sample blog post',
+            'excerpt' => '',
+            'content' => 'A very short sample content. Well at least it isn\'t weird.',
+            'access_key' => Schema::TYPE_STRING . ' NOT NULL',
+        ]);
+
+        $this->createTable('{{%blogger_postmeta}}', [
             'meta_id' => 'pk',
             'post_id' => Schema::TYPE_INTEGER . ' NOT NULL',
             'key' => Schema::TYPE_STRING . ' NOT NULL',
@@ -49,12 +57,20 @@ class m150404_022448_make_blogger_db_requirements extends Migration
             'updater_id' => Schema::TYPE_INTEGER . ' NOT NULL',
         ], $tableOptions);
 
-        $this->insert('{{%posts}}', [
-            'type' => 'blog',
-            'title' => 'Sample blog post',
-            'excerpt' => '',
-            'content' => 'A very short sample content. Well at least it isn\'t weird.',
-            'access_key' => Schema::TYPE_STRING . ' NOT NULL',
+        $this->createTable('{{%blogger_settings}}', [
+            'id' => 'pk',
+            'key' => Schema::TYPE_STRING . ' NOT NULL',
+            'value' => Schema::TYPE_STRING . ' NOT NULL',
+            'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
+            'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'author_id' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'updater_id' => Schema::TYPE_INTEGER . ' NOT NULL',
+        ], $tableOptions);
+
+        $this->insert('{{%blogger_settings}}', [
+            'key' => 'rbac',
+            'value' => '0',
         ]);
     }
     
