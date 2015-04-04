@@ -11,4 +11,4 @@ To access the module, you need to add this to your application configuration:
 # Migrations --helper
 
 # migrate the migrations in a module non-interactively
-yii migrate --migrationPath=@app/modules/forum/migrations --interactive=0
+yii migrate --migrationPath=vendor/adzadzadz/yii2-module-blogger/migrations --interactive=0
