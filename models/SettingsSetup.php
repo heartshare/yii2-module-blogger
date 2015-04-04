@@ -16,7 +16,7 @@ class SettingsSetup extends BloggerSettings
 		}
 		return false;
 	}
-
+	
 	public function updateSettingByKey($key = null, $value = null)
 	{
 		if($key !== null && $value !== null) {

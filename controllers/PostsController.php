@@ -15,4 +15,15 @@ class PostsController extends Controller
         	'posts' => $posts,
         ]);
     }
+
+    public function actionEdit($id)
+    {		
+    	$post = Post::getPostById($id);
+    	if($post === null) {
+    		return $this->render('error');
+    	}
+    	return $this->render('edit',[
+    		'post' => $post,
+    	]);
+    }
 }

@@ -21,7 +21,7 @@ use yii\behaviors\BlameableBehavior;
  * @property integer $author_id
  * @property integer $updater_id
  */
-class Posts extends \yii\db\ActiveRecord
+class BloggerPosts extends \yii\db\ActiveRecord
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;

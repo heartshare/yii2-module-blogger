@@ -13,7 +13,6 @@ class blogger extends \yii\base\Module
         parent::init();
 
 	    // @var ../Rbac.php
-    	Rbac::init();
-    	
+    	Rbac::init();    	
     }
 }

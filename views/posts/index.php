@@ -1,6 +1,9 @@
 <?php
 	
 	$this->title = 'Posts';
+
+	use yii\helpers\Html;
+	use yii\helpers\Url;
 	
 ?>
 
@@ -10,7 +13,7 @@
 		<aside class="left col-sm-8">
 		<?php foreach ($posts as $post) { ?>
 			<article>
-				<header><h2><?= $post->title ?></h2></header>
+				<header><h2><?= $post->title ?> <small><a href="<?= Url::toRoute(['edit', 'id' => $post->post_id]) ?>">(edit)</a></small></h2></header>
 				<section class="content excerpt">
 					<?= $post->content ?>
 				</section>
@@ -19,6 +22,8 @@
 					<i>Updated at:</i> <strong><?= date("Y-m-d H:i:s", $post->updated_at) ?></strong> <br>
 				</footer>
 			</article>
+
+
 		<?php } ?>
 		</aside>
 		<aside class="right sidebar col-sm-4">
