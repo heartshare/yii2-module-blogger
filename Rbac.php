@@ -14,39 +14,43 @@ class Rbac
             $auth = Yii::$app->authManager;
             
             //CREATE PERMISSIONS        
-            //Permission to create posts
-            $bloggerAuthor = $auth->createPermission('bloggerCreatePost');
-                $bloggerAuthor->description = 'Allowed to create blog posts from blogger module';
-                $auth->add($bloggerAuthor);
-         
-            //Permission to edit posts created my authors
-            $bloggerEditor = $auth->createPermission('bloggerModifyPost');
-                $bloggerEditor->description = 'Allowed to modify posts by an author.';
-                $auth->add($bloggerEditor);
-             	
-            //ROLES AND PERMISSIONS
-            //author role
-            $author = $auth->createRole('bloggerAuthor');  //author role
-            $auth->add($author); 
-            // ... add $bloggerAuthor as children of $author ...
-            $auth->addChild($author, $bloggerAuthor);
+            $bloggerCreatePost = $auth->createPermission('bloggerCreatePost');
+                $bloggerCreatePost->description = 'Allowed user to create posts.';
+                $auth->add($bloggerCreatePost);
+        
+            $bloggerEditPost = $auth->createPermission('bloggerEditPost');
+                $bloggerEditPost->description = 'Allow user to modify posts.';
+                $auth->add($bloggerEditPost);
 
-            //user role
-            $editor = $auth->createRole('bloggerEditor');  //editor role
+            $bloggerDeletePost = $auth->createPermission('bloggerDeletePost');
+                $bloggerDeletePost->description = 'Allow user to delete a post.';
+                $auth->add($bloggerDeletePost);
+             	
+            //ROLES AND SET PERMISSIONS
+            // blogger author role
+            $author = $auth->createRole('bloggerAuthor');
+            $auth->add($author);
+            // blogger author permissions
+            $auth->addChild($author, $bloggerCreatePost);
+            $auth->addChild($author, $bloggerEditPost);
+            $auth->addChild($author, $bloggerDeletePost);
+
+            // blogger editor role
+            $editor = $auth->createRole('bloggerEditor');  
             $auth->add($editor);
-            // ... add $bloggereditor as children of $editor ...
-            $auth->addChild($editor, $bloggerEditor);
+            // blogger editor permissions
+            $auth->addChild($editor, $bloggerEditPost);
             
-            //admin role
+            // blogger admin role
             $admin = $auth->createRole('bloggerAdmin');
             $auth->add($admin);
-            // ... add permissions as children of $editor ..
-            $auth->addChild($admin, $author); //user is a child of author
-            $auth->addChild($admin, $editor); //admin can modify Post
+            // blogger admin can do what the "author" and "editor" can.
+            $auth->addChild($admin, $author);
+            $auth->addChild($admin, $editor);
 
             // Assigning users their roles
-            $auth->assign($author, 3);
-            $auth->assign($admin, 17);
+            $auth->assign($author, 3); // 2nd param is the user ID.
+            $auth->assign($editor, 4);
 
             $updateBloggerSetting = SettingsSetup::updateSettingByKey('rbac', '1');
           

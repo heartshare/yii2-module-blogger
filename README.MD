@@ -17,3 +17,6 @@ To access the module, you need to add this to your application configuration:
 # migrate the migrations in a module non-interactively
 - yii migrate --migrationPath=vendor/adzadzadz/yii2-module-blogger/migrations --interactive=0
 - Just access index.php?r=blogger to initialize everything.
+
+Set view permission using:
+- Yii::$app->user->can($role)

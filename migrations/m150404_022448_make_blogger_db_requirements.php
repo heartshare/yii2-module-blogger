@@ -40,8 +40,8 @@ class m150404_022448_make_blogger_db_requirements extends Migration
         $this->insert('{{%blogger_posts}}', [
             'type' => 'blog',
             'title' => 'Sample blog post',
-            'excerpt' => '',
-            'content' => 'A very short sample content. Well at least it isn\'t weird.',
+            'excerpt' => 'A very short sample content.',
+            'content' => 'A very short sample content. Well at least it\'s not weird.',
         ]);
 
         $this->createTable('{{%blogger_postmeta}}', [
