@@ -13,6 +13,8 @@ class blogger extends \yii\base\Module
         parent::init();
 
 	    // @var ../Rbac.php
-    	Rbac::init();    	
+    	Rbac::init();
+
+    	\Yii::setAlias('@bloggerAssets', __DIR__ . '/assets');
     }
 }
