@@ -18,6 +18,8 @@ class BloggerAsset extends AssetBundle
     public $sourcePath = '@adz/assets';
     public $js = [
         'ckeditor/ckeditor.js',
+        'ckeditor/config.js',
+        'ckeditor/styles.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

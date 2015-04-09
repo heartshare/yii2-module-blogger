@@ -7,11 +7,7 @@
 
 	BloggerAsset::register($this);
 ?>
-<article class="col-sm-8">
-	<div class="update-actions">
-		<div class="pull-right"><?= Html::submitButton('Update', ['id' => 'post-update', 'class' => 'btn btn-lg btn-primary', 'data-loading-text' => 'Loading...', 'autocomplete' => 'off']) ?></div>
-	</div>
-
+<article class="col-md-9">
 	<table class="table">
 		<tr>
 			<td><?= Html::activeLabel($postModel, 'title') ?></td>
@@ -28,14 +24,16 @@
 	</table>
 </article>
 
-<aside class="col-sm-4">
-
+<aside class="col-md-3">
+	<div class="update-actions">
+		<div><?= Html::submitButton('Update', ['id' => 'post-update', 'class' => 'btn btn-lg btn-primary btn-block', 'data-loading-text' => 'Loading...', 'autocomplete' => 'off']) ?></div>
+	</div>
 </aside>
 
 <?php 
 
 	$jsScript = "
-
+		
 		$('#post-update').click(function (){
 			var url = '" . Url::toRoute(['posts/update', 'id' => $post['post_id'] ]) . "';
 			$.ajax({
