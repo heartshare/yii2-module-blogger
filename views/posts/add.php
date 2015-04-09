@@ -1,6 +1,6 @@
-<?php 
-
-	$this->title = 'Edit';
+<?php
+	
+	$this->title = 'Add';
 
 	use yii\helpers\Html;
 	use yii\helpers\Url;
@@ -9,15 +9,13 @@
 	$this->params['breadcrumbs'][] = ['label' => 'Blogger', 'url' => ['/blogger']];
 	$this->params['breadcrumbs'][] = $this->title;
 
-	echo $this->render('_fields', [
-		'postModel' => $postModel,
-		'post'      => $post,
-	]);
+
+	echo $this->render('_fields', ['postModel' => $postModel]); 
 
 	$jsScript = "
 		
 		$('#post-update').click(function (){
-			var url = '" . Url::toRoute(['posts/update', 'id' => $post['post_id'] ]) . "';
+			var url = '" . Url::toRoute(['posts/insert']) . "';
 			$.ajax({
 		        url: url,
 		        type: 'POST',
@@ -39,6 +37,5 @@
 				
 	";
 
-	$this->registerJs($jsScript, View::POS_READY, 'post-update-ajax') 
-
+	 $this->registerJs($jsScript, View::POS_READY, 'post-update-ajax');
 ?>

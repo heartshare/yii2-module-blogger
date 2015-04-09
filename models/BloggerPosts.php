@@ -52,7 +52,7 @@ class BloggerPosts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'title', 'excerpt', 'content'], 'required'],
+            [['type', 'title', 'content'], 'required'],
             [['title', 'excerpt', 'content'], 'string'],
             [['status', 'created_at', 'updated_at', 'author_id', 'updater_id'], 'integer'],
             [['type', 'access_key'], 'string', 'max' => 255]

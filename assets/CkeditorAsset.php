@@ -13,7 +13,7 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class BloggerAsset extends AssetBundle
+class CkeditorAsset extends AssetBundle
 {
     public $sourcePath = '@adz/assets';
     public $js = [

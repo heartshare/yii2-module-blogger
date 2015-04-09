@@ -17,12 +17,17 @@ class PostsController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['edit'],
+                'only' => ['edit', 'add'],
                 'rules' => [
                     [
                         'actions' => ['edit'],
                         'allow' => true,
                         'roles' => ['bloggerEditPost'],
+                    ],
+                    [
+                        'actions' => ['add'],
+                        'allow' => true,
+                        'roles' => ['bloggerCreatePost'],
                     ],
                 ],
             ],
@@ -74,8 +79,29 @@ class PostsController extends Controller
         throw new BadRequestHttpException();
     }
 
+    public function actionInsert()
+    {   
+        $postModel = new BloggerPosts;
+        if(\Yii::$app->request->isAjax) {
+            if ($postModel->load(\Yii::$app->request->post()) && $postModel->save()) {          
+               return 'Saved';
+            }
+            return 'There seems to be an error.';
+        }      
+        if(empty(\Yii::$app->request->post())) {
+            return $this->render('add', [
+                'postModel' => $postModel,
+            ]);
+        }          
+    }
+
     public function actionDelete()
     {
         
+    }
+
+    public function actionTest()
+    {
+        var_dump(\Yii::$app->request->post());
     }
 }
