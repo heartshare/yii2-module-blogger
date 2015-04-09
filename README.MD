@@ -1,6 +1,6 @@
 #Installation
 
-- Add this to your composer.json and update composer.
+Add this to your composer.json and update composer.
 
     ......
     "repositories": [
