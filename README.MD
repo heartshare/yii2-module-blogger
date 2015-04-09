@@ -4,16 +4,16 @@
 
     ......
     "repositories": [
-            {
-                "type": "vcs",
-                "url": "https://github.com/adzadzadz/yii2-module-blogger"
-            }
-        ],
-        "require": {
-            "adzadzadz/yii2-module-blogger": "*"
+        {
+            "type": "vcs",
+            "url": "https://github.com/adzadzadz/yii2-module-blogger"
         }
+    ],
+    "require": {
+        "adzadzadz/yii2-module-blogger": "*"
+    }
     ......
-    
+
 
 To access the module, you need to add this to your application configuration:
 
@@ -32,7 +32,7 @@ To access the module, you need to add this to your application configuration:
 
 ##DB Migrations
 - yii migrate --migrationPath=vendor/adzadzadz/yii2-module-blogger/migrations --interactive=0
-- Just access index.php?r=blogger to initialize everything.
+- then access index.php?r=blogger to initialize permission requirements.
 
 ##Set view permission using:
 - \Yii::$app->user->can($role)
