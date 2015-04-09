@@ -7,6 +7,7 @@
 ?>
 
 <article class="col-md-9">
+<div id="post-result"></div>
 	<table class="table">
 		<tr>
 			<td><?= Html::activeLabel($postModel, 'title') ?></td>
@@ -34,6 +35,5 @@
 			<?= Html::activeLabel($postModel, 'type') ?>
 			<?= Html::activeInput('text', $postModel, 'type', ['class' => 'form-control', 'placeholder' => 'Enter Post Type']) ?>
 		</div>
-
 	</div>
 </aside>

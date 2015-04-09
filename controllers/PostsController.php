@@ -86,7 +86,7 @@ class PostsController extends Controller
             if ($postModel->load(\Yii::$app->request->post()) && $postModel->save()) {          
                return 'Saved';
             }
-            return 'There seems to be an error.';
+            return \yii\helpers\Html::errorSummary($postModel, ['class' => 'errors']);
         }      
         if(empty(\Yii::$app->request->post())) {
             return $this->render('add', [

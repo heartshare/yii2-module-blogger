@@ -39,4 +39,4 @@ To access the module, you need to add this to your application configuration:
     - $role can be any of the following: 
         - (permissions: bloggerCreatePost, bloggerEditPost, bloggerDeletePost) or 
         - (roles: bloggerAuthor, bloggerEditor, bloggerAdmin)
-    -Example: \Yii::$app->user->can('bloggerAuthor');
+    - Example: \Yii::$app->user->can('bloggerAuthor');
