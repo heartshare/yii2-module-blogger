@@ -1,6 +1,7 @@
 #Installation
 
 - Add this to your composer.json and update composer.
+
     ......
     "repositories": [
             {
@@ -12,8 +13,10 @@
             "adzadzadz/yii2-module-blogger": "*"
         }
     ......
+    
 
 To access the module, you need to add this to your application configuration:
+
     ......
 	'modules' => [
         'blogger' => [
@@ -26,11 +29,14 @@ To access the module, you need to add this to your application configuration:
     ],
     ......
 
-DB Migrations
+
+##DB Migrations
 - yii migrate --migrationPath=vendor/adzadzadz/yii2-module-blogger/migrations --interactive=0
 - Just access index.php?r=blogger to initialize everything.
 
-Set view permission using:
+##Set view permission using:
 - \Yii::$app->user->can($role)
-    - $role can be any of the following: (permissions: bloggerCreatePost, bloggerEditPost, bloggerDeletePost) or (roles: bloggerAuthor, bloggerEditor, bloggerAdmin)
+    - $role can be any of the following: 
+        - (permissions: bloggerCreatePost, bloggerEditPost, bloggerDeletePost) or 
+        - (roles: bloggerAuthor, bloggerEditor, bloggerAdmin)
     -Example: \Yii::$app->user->can('bloggerAuthor');
