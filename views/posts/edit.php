@@ -3,8 +3,9 @@
 	use yii\helpers\Html;
 	use yii\helpers\Url;
 	use yii\web\View;
-	
+	use adzadzadz\modules\blogger\assets\BloggerAsset;
 
+	BloggerAsset::register($this);
 ?>
 <article class="col-sm-8">
 	<div class="update-actions">
@@ -30,8 +31,6 @@
 <aside class="col-sm-4">
 
 </aside>
-
-<?php $this->registerJsFile(\Yii::getAlias('@bloggerAssets') . '/ckeditor/ckeditor.js', ['depends' => [\yii\web\JqueryAsset::className()]]); ?>
 
 <?php 
 

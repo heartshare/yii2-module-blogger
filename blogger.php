@@ -15,6 +15,6 @@ class blogger extends \yii\base\Module
 	    // @var ../Rbac.php
     	Rbac::init();
 
-    	\Yii::setAlias('@bloggerAssets', __DIR__ . '/assets');
+    	\Yii::setAlias('@adz', __DIR__ );
     }
 }
