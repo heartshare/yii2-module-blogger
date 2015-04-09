@@ -32,7 +32,11 @@
 		        },
 		        success: function(result){
 		            $('#post-update').button('reset');
-				    $('#post-update').before().html(result);
+				    if(result != 'Saved') {
+					    $('#post-result').html('<div class=\"alert alert-danger\">' + result + '</div>');
+					} else {
+						$('#post-result').html('<div class=\"alert alert-success\">' + result + '</div>');
+					}
 				},
 		    });
 		} );

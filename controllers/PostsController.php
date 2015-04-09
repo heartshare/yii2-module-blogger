@@ -29,6 +29,11 @@ class PostsController extends Controller
                         'allow' => true,
                         'roles' => ['bloggerCreatePost'],
                     ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => true,
+                        'roles' => ['bloggerAuthor'],
+                    ],
                 ],
             ],
             'verbs' => [
@@ -68,12 +73,12 @@ class PostsController extends Controller
     public function actionUpdate($id)
     {
         if(\Yii::$app->request->isAjax) {
-             $model = BloggerPosts::findOne($id);
+             $postModel = BloggerPosts::findOne($id);
             
-            if ($model->load(\Yii::$app->request->post()) && $model->save()) {          
+            if ($postModel->load(\Yii::$app->request->post()) && $postModel->save()) {          
                return 'Saved';
             }            
-            return 'There seems to be an error.';
+            return \yii\helpers\Html::errorSummary($postModel, ['class' => 'errors']);
         }
 
         throw new BadRequestHttpException();
@@ -98,6 +103,13 @@ class PostsController extends Controller
     public function actionDelete()
     {
         
+    }
+
+    public function actionView($id = null)
+    {
+        if (Yii::$app->user->can('bloggerAdmin')) {
+            
+        }
     }
 
     public function actionTest()

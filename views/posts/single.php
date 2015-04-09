@@ -8,7 +8,7 @@
 	<header>
 		<h2>
 			<?= $post->title ?> 
-			<?php if (Yii::$app->user->can('bloggerEditPost')): ?>
+			<?php if (\Yii::$app->user->can('bloggerEditPost')): ?>
 				<small><a href="<?= Url::toRoute(['edit', 'id' => $post->post_id]) ?>">(edit)</a></small>
 			<?php endif ?>
 		</h2>
