@@ -51,6 +51,21 @@ class PostsController extends Controller
 
         return $this->render('index', [
         	'posts' => $posts,
+            'single' => false,
+        ]);
+    }
+
+    public function actionSingle($id)
+    {
+        $post = Post::getPostById($id);
+
+        if($post === null) {
+            return $this->render('error');
+        }
+
+        return $this->render('single',[
+            'post' => $post,
+            'single' => true,
         ]);
     }
 
@@ -62,11 +77,9 @@ class PostsController extends Controller
     		return $this->render('error');
     	}
 
-        $postModel = BloggerPosts::findOne($id);
-
     	return $this->render('edit',[
     		'post' => $post,
-            'postModel' => $postModel,
+            'postModel' => $post,
     	]);
     }
 

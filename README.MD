@@ -40,3 +40,11 @@ To access the module, you need to add this to your application configuration:
         - (permissions: bloggerCreatePost, bloggerEditPost, bloggerDeletePost) or 
         - (roles: bloggerAuthor, bloggerEditor, bloggerAdmin)
     - Example: \Yii::$app->user->can('bloggerAuthor');
+
+
+<!-- REQUIREMENTS -->
+'authManager' => [
+    'class' => 'yii\rbac\DbManager',
+    'defaultRoles' => ['guest'],
+],
+yii migrate --migrationPath=@yii/rbac/migrations/

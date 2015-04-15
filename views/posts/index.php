@@ -5,7 +5,6 @@
 	use yii\helpers\Html;
 	use yii\helpers\Url;
 
-	$this->params['breadcrumbs'][] = $this->title;
 ?>
 	
 <div class="row">
@@ -20,8 +19,9 @@
 	<section class="main col-md-8">
 	<?php foreach ($posts as $post) { ?>
 		
-		<?= $this->render('single',[
+		<?= $this->render('post-content',[
 			'post' => $post,
+			'single' => $single,
 		]) ?>
 
 		<div class="clearfix"><hr></div>

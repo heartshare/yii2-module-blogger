@@ -49,8 +49,7 @@ class Rbac
             $auth->addChild($admin, $editor);
 
             // Assigning users their roles
-            $auth->assign($author, 3); // 2nd param is the user ID.
-            $auth->assign($editor, 4);
+            $auth->assign($admin, 0); // 2nd param is the user ID.
 
             $updateBloggerSetting = SettingsSetup::updateSettingByKey('rbac', '1');
           
