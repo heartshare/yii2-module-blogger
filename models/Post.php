@@ -26,4 +26,11 @@ class Post extends BloggerPosts
 	{
 		return BloggerPosts::findOne($id);
 	}
+
+	public function getAllPosts()
+	{
+		return BloggerPosts::find()
+        ->indexBy('post_id')
+        ->all();
+	}
 }

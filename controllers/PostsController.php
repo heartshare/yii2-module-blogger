@@ -55,7 +55,7 @@ class PostsController extends Controller
         ]);
     }
 
-    public function actionSingle($id)
+    public function actionSingle($id = null)
     {
         $post = Post::getPostById($id);
 
@@ -69,7 +69,7 @@ class PostsController extends Controller
         ]);
     }
 
-    public function actionEdit($id)
+    public function actionEdit($id = null)
     {		
     	$post = Post::getPostById($id);
 
@@ -120,8 +120,12 @@ class PostsController extends Controller
 
     public function actionView($id = null)
     {
-        if (Yii::$app->user->can('bloggerAdmin')) {
-            
+        if (\Yii::$app->user->can('bloggerAdmin')) {
+            $allPosts = Post::getAllPosts();
+
+            return $this->render('view', [
+                'allPosts' => $allPosts,
+            ]);
         }
     }
 
