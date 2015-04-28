@@ -5,8 +5,9 @@
 	use yii\helpers\Html;
 	use yii\helpers\Url;
 
+	$this->render('notif');
 ?>
-	
+
 <div class="row">
 	<section class="blogger-post-actions col-md-12">
 		<div>
@@ -31,7 +32,7 @@
 				<tr>
 					<td><?= $post->title ?></td>
 					<td><?= $post->excerpt ?></td>
-					<td>Edit / Delete</td>
+					<td><a href="<?= Url::toRoute(['edit', 'id' => $post->post_id]) ?>">Edit</a> / <a href="<?= Url::toRoute(['edit', 'id' => $post->post_id]) ?>">Delete</a></td>
 				</tr>
 			</tbody>
 			<?php } ?>

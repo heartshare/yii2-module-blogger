@@ -39,7 +39,7 @@ class PostsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'update' => ['post']
+                    'update' => ['post'],
                 ],
             ],
         ];
@@ -113,9 +113,19 @@ class PostsController extends Controller
         }          
     }
 
-    public function actionDelete()
+    public function actionDelete($id = null)
     {
-        
+        if($id === null) {
+            return $this->render('error');
+        }
+        if (\Yii::$app->user->can('bloggerAdmin')) {
+            $deleteResult = Post::deletePost($id);
+
+            \Yii::$app->session->setFlash('success', 'Post Deleted');
+            return $this->redirect(['view']);
+        } else {
+            return $this->render('error');
+        }
     }
 
     public function actionView($id = null)
@@ -126,6 +136,8 @@ class PostsController extends Controller
             return $this->render('view', [
                 'allPosts' => $allPosts,
             ]);
+        } else {
+            return $this->render('error');
         }
     }
 

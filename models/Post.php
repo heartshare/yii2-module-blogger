@@ -33,4 +33,10 @@ class Post extends BloggerPosts
         ->indexBy('post_id')
         ->all();
 	}
+
+	public function deletePost($id)
+	{
+		$post = BloggerPosts::findOne($id);
+        return $post->delete();
+	}
 }
