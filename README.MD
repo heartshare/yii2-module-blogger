@@ -27,6 +27,7 @@ Add this to your composer.json and update composer.
 
 
 - And run this migration to initialize RBAC for user permissions. This is a must!
+    - Before anything, make sure to [ $php composer update ] from your terminal to download the module. Then,
     - yii migrate --migrationPath=@yii/rbac/migrations/
     - yii migrate --migrationPath=vendor/adzadzadz/yii2-module-blogger/migrations --interactive=0
 
@@ -55,9 +56,6 @@ Add this to your composer.json and update composer.
             - (permissions: bloggerCreatePost, bloggerEditPost, bloggerDeletePost) or 
             - (roles: bloggerAuthor, bloggerEditor, bloggerAdmin)
         - Example: \Yii::$app->user->can('bloggerAuthor');
-
-
-##Module DB Migrations
 
 
 ===============================================================================================
