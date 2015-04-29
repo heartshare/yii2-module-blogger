@@ -1,17 +1,6 @@
-#REQUIREMENTS
-- Make sure to add this on you app components
-    ......
-    'authManager' => [
-        'class' => 'yii\rbac\DbManager',
-        'defaultRoles' => ['guest'],
-    ],
-    ......
-- and run this migration to initialize RBAC for user permissions. This is a must!
-    - yii migrate --migrationPath=@yii/rbac/migrations/
+#INSTALLATION
 
-===============================================================================================
-
-#Installation
+##Requirements
 
 Add this to your composer.json and update composer.
 
@@ -27,8 +16,22 @@ Add this to your composer.json and update composer.
     }
     ......
 
+- Make sure to add this on your app components
 
-To access the module, you need to add this to your application configuration:
+    ......
+    'authManager' => [
+        'class' => 'yii\rbac\DbManager',
+        'defaultRoles' => ['guest'],
+    ],
+    ......
+
+
+- And run this migration to initialize RBAC for user permissions. This is a must!
+    - yii migrate --migrationPath=@yii/rbac/migrations/
+    - yii migrate --migrationPath=vendor/adzadzadz/yii2-module-blogger/migrations --interactive=0
+
+
+- To access the module, you need to add this to your application configuration:
 
     ......
 	'modules' => [
@@ -42,9 +45,10 @@ To access the module, you need to add this to your application configuration:
     ],
     ......
 
+- access index.php?r=blogger and that's it.
 
 #Template creation:
-- Just copy the module view file to your app's view file and specify the "viewPath" on the module config. (Check above for reference)
+- Just copy the module view file to your app's view file and specify the "viewPath" on the module config. (Check above for 'viewPath' reference)
 - Set view permissions using:
     - \Yii::$app->user->can($role)
         - $role can be any of the following: 
@@ -54,7 +58,6 @@ To access the module, you need to add this to your application configuration:
 
 
 ##Module DB Migrations
-- yii migrate --migrationPath=vendor/adzadzadz/yii2-module-blogger/migrations --interactive=0
-- then access index.php?r=blogger to initialize permission requirements.
+
 
 ===============================================================================================
