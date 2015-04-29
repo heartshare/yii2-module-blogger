@@ -5,7 +5,8 @@
 	use yii\helpers\Html;
 	use yii\helpers\Url;
 
-	$this->render('notif');
+	$this->render('../bloggercomponents/notif')
+	
 ?>
 
 <div class="row">

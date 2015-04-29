@@ -16,10 +16,9 @@ class PermissionsController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['edit', 'add'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'add', 'delete'],
+                        'actions' => ['index', 'addpermission', 'deletepermission', 'getpermissions'],
                         'allow' => true,
                         'roles' => ['bloggerAdmin'],
                     ],
@@ -94,12 +93,4 @@ class PermissionsController extends Controller
             ]);
         }
     }
-
-    public function actionTest()
-    {
-        
-        $role = Yii::$app->authManager->createRole('bloggerAdmin');
-        return var_dump(Yii::$app->authManager->revoke($role, 3));
-    }
-
 }

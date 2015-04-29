@@ -9,11 +9,17 @@
 	use adzadzadz\modules\blogger\assets\MainAsset;
 	MainAsset::register($this);
 
+	$this->params['breadcrumbs'][] = ['label' => 'Blogger', 'url' => ['/blogger']];
+	$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
+<?= $this->render('../bloggercomponents/nav') ?>
+<br><br>
 <h3>Manage Permissions</h3>
 
-<?= $this->render('notif') ?>
+<?= $this->render('../bloggercomponents/notif') ?>
+
 
 <div class="row">
 	<div class="col-sm-8">
