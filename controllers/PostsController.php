@@ -105,7 +105,7 @@ class PostsController extends Controller
                return 'Saved';
             }
             return \yii\helpers\Html::errorSummary($postModel, ['class' => 'errors']);
-        }      
+        }
         if(empty(\Yii::$app->request->post())) {
             return $this->render('add', [
                 'postModel' => $postModel,
@@ -141,8 +141,4 @@ class PostsController extends Controller
         }
     }
 
-    public function actionTest()
-    {
-        var_dump(\Yii::$app->request->post());
-    }
 }

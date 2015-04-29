@@ -28,7 +28,9 @@ class PermissionsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    // 'addpermission' => ['post'],
+                    'addpermission' => ['post'],
+                    'getpermission' => ['post'],
+                    'deletepermission' => ['post'],
                 ],
             ],
         ];
@@ -38,8 +40,8 @@ class PermissionsController extends Controller
     {    	
         return $this->render('index',[
         	'permissionList' => Permissions::getPermissionSet(),
-        	'userList'       => User::find()->all(),
-        	'assignedUsers'  => '',
+        	'userList'       => User::find()->where(['status' => User::STATUS_ACTIVE])->all(),
+            'assignedUsers'  => Permissions::getAssignedUsers(),
         ]);
     }
 
@@ -54,10 +56,50 @@ class PermissionsController extends Controller
 
 			$auth->assign(${Yii::$app->request->post('permissionName')}, Yii::$app->request->post('userId'));
 
-			$this->redirect(['index']);
+            Yii::$app->session->setFlash('success', 'Permission added succesfully.');
+			$this->redirect(['permissions/index']);
     	} else {
+            Yii::$app->session->setFlash('error', 'Permission not saved for some reason.');             
     		$this->redirect(['permissions/index']);
     	}
-    } 
+    }
+
+    public function actionDeletepermission()
+    {
+        if(Yii::$app->request->isAjax) {
+            if(!empty(Yii::$app->request->post())) {
+                $role = Yii::$app->authManager->createRole(Yii::$app->request->post('role_name'));
+                if (Yii::$app->authManager->revoke($role, Yii::$app->request->post('user_id')) == true) {
+                    return 'Success!!! Permission removed.';
+                }
+            }
+            return 'I couldn\'t remove the permission for some reason.';
+        }
+    }
+
+    public function actionGetpermissions()
+    {
+        if(Yii::$app->request->isAjax) {
+            if(!empty(Yii::$app->request->post())) {
+                $permissions = Permissions::getUserAssignments(Yii::$app->request->post('user_id'));
+                return $this->renderPartial('_assignedpermissions',[
+                    'user_id'      => Yii::$app->request->post('user_id'),
+                    'permissions'  => $permissions,
+                ]);
+            }
+            Yii::$app->session->setFlash('error', 'Some kind of error'); 
+            return $this->renderPartial('_assignedpermissions',[
+                'permissions'  => null,
+                'user_id'      => null,
+            ]);
+        }
+    }
+
+    public function actionTest()
+    {
+        
+        $role = Yii::$app->authManager->createRole('bloggerAdmin');
+        return var_dump(Yii::$app->authManager->revoke($role, 3));
+    }
 
 }
