@@ -4,7 +4,7 @@
 
 Add this to your composer.json and update composer.
 
-    ......
+    ```
     "repositories": [
         {
             "type": "vcs",
@@ -14,16 +14,16 @@ Add this to your composer.json and update composer.
     "require": {
         "adzadzadz/yii2-module-blogger": "*"
     }
-    ......
+    ```
 
 - Make sure to add this on your app components
 
-    ......
+    ```
     'authManager' => [
         'class' => 'yii\rbac\DbManager',
         'defaultRoles' => ['guest'],
     ],
-    ......
+    ```
 
 - And run this migration to initialize RBAC for user permissions. This is a must!
     - Before anything, make sure to [ $php composer update ] from your terminal to download the module. Then,
@@ -33,7 +33,7 @@ Add this to your composer.json and update composer.
 
 - To access the module, you need to add this to your application configuration:
 
-    ......
+    ```
 	'modules' => [
         'blogger' => [
             'class' => 'adzadzadz\modules\blogger\blogger',
@@ -43,7 +43,7 @@ Add this to your composer.json and update composer.
             ]
         ],
     ],
-    ......
+    ```
 
 - access index.php?r=blogger and that's it.
 
