@@ -26,7 +26,7 @@
 				<tr>
 					<td><?= $post->title ?></td>
 					<td><?= $post->excerpt ?></td>
-					<td><a href="<?= Url::toRoute(['edit', 'id' => $post->post_id]) ?>">Edit</a> / <a href="<?= Url::toRoute(['edit', 'id' => $post->post_id]) ?>">Delete</a></td>
+					<td><a href="<?= Url::toRoute(['edit', 'id' => $post->post_id]) ?>">Edit</a> / <a href="<?= Url::toRoute(['delete', 'id' => $post->post_id]) ?>">Delete</a></td>
 				</tr>
 			</tbody>
 			<?php } ?>
