@@ -9,6 +9,7 @@
 	$this->params['breadcrumbs'][] = ['label' => 'Blogger', 'url' => ['/blogger']];
 	$this->params['breadcrumbs'][] = $this->title;
 
+	$this->render('../bloggercomponents/nav');
 
 	echo $this->render('_fields', ['postModel' => $postModel]); 
 

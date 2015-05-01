@@ -6,6 +6,7 @@
 ?>
 
 <div class="row">
+	<?= $this->render('../bloggercomponents/nav') ?>
 	<section class="blogger-post-actions col-md-12">
 		<div>
 		<?php if (Yii::$app->user->can('bloggerAuthor')): ?>
