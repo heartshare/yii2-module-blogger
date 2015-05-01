@@ -1,9 +1,12 @@
 <?php
 	
-	$this->title = 'All';
+	$this->title = 'View All';
 
 	use yii\helpers\Html;
 	use yii\helpers\Url;
+
+	$this->params['breadcrumbs'][] = ['label' => 'Blogger', 'url' => ['/blogger']];
+	$this->params['breadcrumbs'][] = $this->title;
 
 	$this->render('../bloggercomponents/notif')
 	
