@@ -25,7 +25,6 @@ Add this to your composer.json and update composer.
     ],
     ......
 
-
 - And run this migration to initialize RBAC for user permissions. This is a must!
     - Before anything, make sure to [ $php composer update ] from your terminal to download the module. Then,
     - yii migrate --migrationPath=@yii/rbac/migrations/
