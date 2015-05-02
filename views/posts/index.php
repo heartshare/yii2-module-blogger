@@ -12,7 +12,7 @@
 
 <?= $this->render('../bloggercomponents/nav') ?>
 
-<div class="row">	
+<div class="row">
 	<section class="main col-md-8">
 	<?php foreach ($posts as $post) { ?>
 		

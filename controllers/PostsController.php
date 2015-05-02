@@ -55,6 +55,15 @@ class PostsController extends Controller
         ]);
     }
 
+    public function actionType($postType)
+    {
+        $posts = Post::getPostsByType($postType);
+        return $this->renderPartial('@adz/views/bloggercomponents/_posttypes',[
+            'postTypes' => $posts,
+        ]);
+
+    }
+
     public function actionSingle($id = null)
     {
         $post = Post::getPostById($id);

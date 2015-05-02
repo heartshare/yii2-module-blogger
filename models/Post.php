@@ -9,17 +9,18 @@ use adzadzadz\modules\blogger\models\BloggerPosts;
 
 class Post extends BloggerPosts
 {
-	public function getPostsByType($type)
+	public function getPostTypes()
 	{
 		$all = BloggerPosts::find()
 	    ->where(['type' => $type, 'status' => SELF::STATUS_ACTIVE])
 	    ->all();
-
-	    if($all === null) {
-	    	return false;
-	    }	
-
-		return $all;
+	}
+	
+	public function getPostsByType($type)
+	{
+		return BloggerPosts::find()
+	    ->where(['type' => $type, 'status' => SELF::STATUS_ACTIVE])
+	    ->all();;
 	}
 
 	public function getPostById($id)

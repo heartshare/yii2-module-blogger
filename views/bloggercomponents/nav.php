@@ -5,7 +5,7 @@
 ?>
 <?php if (Yii::$app->user->can('bloggerAuthor')): ?>
 <section id="blogger-post-actions" class="col-md-12">
-	<h3 class="blogger-post-menu-title">Menu</h3>
+	<div class="nav-title">Menu</div>
 	<div id="blogger-menu-trigger-thinggy-wrapper">
 		<div id="blogger-menu-trigger-thinggy">
 			<i class="fa fa-cog"></i>
