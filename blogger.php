@@ -3,6 +3,7 @@
 namespace adzadzadz\modules\blogger;
 
 use adzadzadz\modules\blogger\Rbac;
+use Yii;
 
 class blogger extends \yii\base\Module
 {
@@ -12,9 +13,11 @@ class blogger extends \yii\base\Module
     {
         parent::init();
 
+        Yii::setAlias('@adz', __DIR__ );
+
 	    // @var ../Rbac.php
     	Rbac::init();
 
-    	\Yii::setAlias('@adz', __DIR__ );
+    	
     }
 }

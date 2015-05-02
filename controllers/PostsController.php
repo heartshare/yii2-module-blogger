@@ -8,7 +8,7 @@ use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use adzadzadz\modules\blogger\models\Post;
 use adzadzadz\modules\blogger\models\BloggerPosts;
-
+   
 class PostsController extends Controller
 {
 

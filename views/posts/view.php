@@ -5,6 +5,9 @@
 	use yii\helpers\Html;
 	use yii\helpers\Url;
 
+	use adzadzadz\modules\blogger\assets\MainAsset;
+	MainAsset::register($this);
+
 	$this->params['breadcrumbs'][] = ['label' => 'Blogger', 'url' => ['/blogger']];
 	$this->params['breadcrumbs'][] = $this->title;
 

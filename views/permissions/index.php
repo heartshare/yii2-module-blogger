@@ -18,9 +18,6 @@
 <br><br>
 <h3>Manage Permissions</h3>
 
-<?= $this->render('../bloggercomponents/notif') ?>
-
-
 <div class="row">
 	<div class="col-sm-8">
 		<h4>Add</h4>

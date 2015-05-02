@@ -16,8 +16,13 @@ use yii\web\AssetBundle;
 class MainAsset extends AssetBundle
 {
     public $sourcePath = '@adz/assets';
+    public $css = [
+        'main/css/style.css',
+        '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
+    ];
     public $js = [
-        'main/ajax.js',
+        'main/js/ajax.js',
+        'main/js/main.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

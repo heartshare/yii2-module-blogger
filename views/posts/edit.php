@@ -6,10 +6,13 @@
 	use yii\helpers\Url;
 	use yii\web\View;
 
+	use adzadzadz\modules\blogger\assets\MainAsset;
+	MainAsset::register($this);
+
 	$this->params['breadcrumbs'][] = ['label' => 'Blogger', 'url' => ['/blogger']];
 	$this->params['breadcrumbs'][] = $this->title;
 
-	$this->render('../bloggercomponents/nav');
+	echo $this->render('../bloggercomponents/nav');
 	
 	echo $this->render('_fields', [
 		'postModel' => $postModel,

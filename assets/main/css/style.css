@@ -1,0 +1,46 @@
+#blogger-post-actions {
+	background: #222222;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	padding: 25px 10px !important;
+	z-index: 9999;
+	width: 250px;
+}
+#blogger-post-actions a.nav-items {
+	display: block;
+	padding: 8px 5px;
+}
+#blogger-post-actions a.nav-items:hover {
+	background: #353535;
+	text-decoration: none;
+	color: #d6d6d6;
+}
+
+#blogger-post-actions .blogger-post-menu-title {
+	color: #fff;
+	padding-left: 20px;
+}
+#blogger-post-actions .nav-title {
+	font-weight: bold;
+	color: #fff;
+	padding: 0px 10px;
+}
+
+#blogger-menu-trigger-thinggy-wrapper {
+	position: relative;
+	background: green;
+}
+#blogger-menu-trigger-thinggy {
+	background: red;
+	padding: 10px 15px;
+	position: absolute;
+	right: -56px;
+	top: 20px;
+	color: #fff;
+	font-size: 19px;
+}
+#blogger-menu-trigger-thinggy:hover {
+	cursor: pointer;
+	background: #a50000;
+}
