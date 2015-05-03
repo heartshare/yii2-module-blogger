@@ -52,7 +52,7 @@ class Rbac
             $auth->assign($admin, 1); // 2nd param is the user ID.
 
             $updateBloggerSetting = SettingsSetup::updateSettingByKey('rbac', '1');
-          
+            $addBlogPostType = Post::addPostType('blog', 'blog');
         }
     }
 }

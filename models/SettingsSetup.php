@@ -26,4 +26,15 @@ class SettingsSetup extends BloggerSettings
 		}
 		return false;
 	}
+	
+	public function addSetting($key = null, $value = null)
+	{
+		if($key !== null && $value !== null) {
+			$setting = new BloggerSettings;
+			$setting->key = $key;
+			$setting->value = $value;
+			return $setting->save();
+		}
+		return false;
+	}
 }

@@ -2,6 +2,7 @@
 
 namespace adzadzadz\modules\blogger\controllers;
 
+use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -55,11 +56,14 @@ class PostsController extends Controller
         ]);
     }
 
-    public function actionType($postType)
+    public function actionTypes()
     {
-        $posts = Post::getPostsByType($postType);
+        $postTypes = Post::getPostTypes();
+        if ($postTypes == null) {
+            return '';
+        }
         return $this->renderPartial('@adz/views/bloggercomponents/_posttypes',[
-            'postTypes' => $posts,
+            'postTypes' => $postTypes,
         ]);
 
     }
@@ -94,13 +98,15 @@ class PostsController extends Controller
 
     public function actionUpdate($id)
     {
-        if(\Yii::$app->request->isAjax) {
+        if(Yii::$app->request->isAjax) {
              $postModel = BloggerPosts::findOne($id);
             
-            if ($postModel->load(\Yii::$app->request->post()) && $postModel->save()) {          
+            if(!Post::addPostType(Yii::$app->request->post('BloggerPosts')['type'], Yii::$app->request->post('BloggerPosts')['type'])) return 'Couldn\'t save Post Type.';
+
+            if ($postModel->load(Yii::$app->request->post()) && $postModel->save()) {          
                return 'Saved';
             }            
-            return \yii\helpers\Html::errorSummary($postModel, ['class' => 'errors']);
+            return yii\helpers\Html::errorSummary($postModel, ['class' => 'errors']);
         }
 
         throw new BadRequestHttpException();
@@ -109,13 +115,14 @@ class PostsController extends Controller
     public function actionInsert()
     {   
         $postModel = new BloggerPosts;
-        if(\Yii::$app->request->isAjax) {
-            if ($postModel->load(\Yii::$app->request->post()) && $postModel->save()) {          
+        if(Yii::$app->request->isAjax) {
+            if(!Post::addPostType(Yii::$app->request->post('BloggerPosts')['type'], Yii::$app->request->post('BloggerPosts')['type'])) return 'Couldn\'t save Post Type.';
+            if ($postModel->load(Yii::$app->request->post()) && $postModel->save()) {          
                return 'Saved';
             }
-            return \yii\helpers\Html::errorSummary($postModel, ['class' => 'errors']);
+            return yii\helpers\Html::errorSummary($postModel, ['class' => 'errors']);
         }
-        if(empty(\Yii::$app->request->post())) {
+        if(empty(Yii::$app->request->post())) {
             return $this->render('add', [
                 'postModel' => $postModel,
             ]);
@@ -127,27 +134,40 @@ class PostsController extends Controller
         if($id === null) {
             return $this->render('error');
         }
-        if (\Yii::$app->user->can('bloggerAdmin')) {
+        if (Yii::$app->user->can('bloggerAdmin')) {
             $deleteResult = Post::deletePost($id);
 
-            \Yii::$app->session->setFlash('success', 'Post Deleted');
+            Yii::$app->session->setFlash('success', 'Post Deleted');
             return $this->redirect(['view']);
         } else {
             return $this->render('error');
         }
     }
 
-    public function actionView($id = null)
+    public function actionView($postType = null)
     {
-        if (\Yii::$app->user->can('bloggerAdmin')) {
-            $allPosts = Post::getAllPosts();
+        if (Yii::$app->user->can('bloggerAdmin')) {
+            if ($postType === null) {
+                $allPosts = Post::getAllPosts();
+
+                return $this->render('view', [
+                    'posts' => $allPosts,
+                ]);
+            }
+
+            $posts = Post::getPostsByType($postType);
 
             return $this->render('view', [
-                'allPosts' => $allPosts,
+                'posts' => $posts,
             ]);
         } else {
             return $this->render('error');
         }
+    }
+
+    public function actionTest()
+    {
+        
     }
 
 }

@@ -1,3 +1,5 @@
+$(document).ready(function () {
+
 $('#get-user-permissions').click(function (){
 	var url = $('#assigned-user-form').data('action');
 	$.ajax({
@@ -35,3 +37,25 @@ $('#button-delete-user-permission').click(function (){
 		}
     });
 } );
+
+// ======================== Post Types Fetched through ajax ========================
+// FAKE PROGRESS BAR
+$('#blogger-post-types-list-progress .progress-bar').animate({
+    width: "100%",
+}, 1300, function() {
+  // Animation complete.
+});
+
+var url = $('#blogger-post-types-list').data('action');
+$.ajax({
+    url: url,
+    type: 'GET',
+    beforeSend: function(){
+    },
+    success: function(result){
+        $('#blogger-post-types-list').html(result);
+    }
+});
+// ====================== END Post Types Fetched through ajax =======================
+
+});

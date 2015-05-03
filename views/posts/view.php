@@ -28,7 +28,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($allPosts as $post) { ?>
+			<?php foreach ($posts as $post) { ?>
 				<tr>
 					<td><?= $post->title ?></td>
 					<td><?= $post->excerpt ?></td>
@@ -39,7 +39,4 @@
 		</table>
 	
 	</section>
-	<aside class="sidebar col-md-4">
-		<input type="text" placeholder="Search" class="form-control">
-	</aside>
 </div>
