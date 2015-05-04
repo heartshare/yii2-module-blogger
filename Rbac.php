@@ -9,12 +9,14 @@ class Rbac
 {
     public function init()
     {
-        if (Yii::$app->user->isGuest) {
-            Yii::$app->session->setFlash('error', 'You need to login to initialize this module. You will be given Blogger Admin permissions.');
-        } else {
-            $rbacCheck = SettingsSetup::getSettingByKey('rbac');
+        $rbacCheck = SettingsSetup::getSettingByKey('rbac');
 
-            if($rbacCheck['value'] == 0) {
+        if($rbacCheck['value'] == 0) {
+            
+            if (Yii::$app->user->isGuest) {
+                Yii::$app->session->setFlash('error', 'You need to login to initialize this module. You will be given Blogger Admin permissions.');
+            } else {
+                
                 $auth = Yii::$app->authManager;
                 
                 //CREATE PERMISSIONS        
