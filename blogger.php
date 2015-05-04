@@ -2,6 +2,7 @@
 
 namespace adzadzadz\modules\blogger;
 
+use adzadzadz\modules\blogger\models\SettingsSetup;
 use adzadzadz\modules\blogger\Rbac;
 use Yii;
 
@@ -15,8 +16,12 @@ class blogger extends \yii\base\Module
 
         Yii::setAlias('@adz', __DIR__ );
 
-	    // @var ../Rbac.php
-    	Rbac::init();
+        $rbacCheck = SettingsSetup::getSettingByKey('rbac');
+
+        if($rbacCheck['value'] < 1) {
+		    // @var ../Rbac.php
+	    	Rbac::init();
+    	}
 
     	
     }
