@@ -40,7 +40,7 @@
 	background: green;
 }
 #blogger-menu-trigger-thinggy {
-	background: red;
+	background: rgba(255,0,0,0.5);
 	padding: 10px 15px;
 	position: absolute;
 	right: -56px;
@@ -50,5 +50,5 @@
 }
 #blogger-menu-trigger-thinggy:hover {
 	cursor: pointer;
-	background: #a50000;
+	background: rgba(255,0,0,1);
 }
