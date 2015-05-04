@@ -56,16 +56,18 @@ class PostsController extends Controller
         ]);
     }
 
-    public function actionTypes()
+    public function actionTypes($renderView = true)
     {
         $postTypes = Post::getPostTypes();
         if ($postTypes == null) {
             return '';
         }
-        return $this->renderPartial('@adz/views/bloggercomponents/_posttypes',[
-            'postTypes' => $postTypes,
-        ]);
-
+        if ($renderView === true) {
+            return $this->renderPartial('@adz/views/bloggercomponents/_posttypes',[
+                'postTypes' => $postTypes,
+            ]);    
+        }
+        return json_encode($postTypes);
     }
 
     public function actionSingle($id = null)

@@ -14,7 +14,9 @@
 
 	echo $this->render('../bloggercomponents/nav');
 
-	echo $this->render('_fields', ['postModel' => $postModel]); 
+	echo $this->render('_fields', [
+		'postModel' => $postModel
+	]); 
 
 	$jsScript = "
 		

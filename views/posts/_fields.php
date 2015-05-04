@@ -7,33 +7,34 @@
 ?>
 
 <article class="col-md-9">
-<div id="post-result"></div>
-	<table class="table">
-		<tr>
-			<td><?= Html::activeLabel($postModel, 'title') ?></td>
-			<td><?= Html::activeInput('text', $postModel, 'title', ['class' => 'form-control']) ?></td>
-		</tr>
-		<tr>
-			<td><?= Html::activeLabel($postModel, 'content') ?></td>
-			<td><?= Html::activeTextarea($postModel, 'content', ['class' => 'form-control ckeditor'] ) ?></td>
-		</tr>
-		<tr>
-			<td><?= Html::activeLabel($postModel, 'excerpt') ?></td>
-			<td><?= Html::activeTextarea($postModel, 'excerpt', ['class' => 'form-control ckeditor', 'rows' => 5] ) ?></td>
-		</tr>
-	</table>
+	<div id="post-result"></div>
+	<div class="form-group border-btm">
+		<?= Html::activeLabel($postModel, 'title') ?>
+		<?= Html::activeInput('text', $postModel, 'title', ['class' => 'form-control']) ?>
+	</div>
+	<div class="form-group border-btm">
+	<?= Html::activeLabel($postModel, 'content') ?>
+	<?= Html::activeTextarea($postModel, 'content', ['class' => 'form-control ckeditor'] ) ?>
+	</div>
+	<div class="form-group border-btm">
+	<?= Html::activeLabel($postModel, 'excerpt') ?>
+	<?= Html::activeTextarea($postModel, 'excerpt', ['class' => 'form-control ckeditor', 'rows' => 5] ) ?>
+	</div>
 </article>
 
 <aside class="col-md-3">
 	<div class="row update-actions">
-		<div class="col-md-12"><?= Html::submitButton($this->title == 'Add'? 'Publish': 'Update', ['id' => 'post-update', 'class' => 'btn btn-lg btn-primary btn-block', 'data-loading-text' => 'Loading...', 'autocomplete' => 'off']) ?></div>
 		<div class="col-md-12">
-			<div class="clearfix"></div>
-			<hr>
+			<div class="form-group border-btm">
+				<?= Html::submitButton($this->title == 'Add'? 'Publish': 'Update', ['id' => 'post-update', 'class' => 'btn btn-lg btn-primary btn-block', 'data-loading-text' => 'Loading...', 'autocomplete' => 'off']) ?>
+			</div>
 		</div>
 		<div class="col-md-12">
-			<?= Html::activeLabel($postModel, 'type') ?>
-			<?= Html::activeInput('text', $postModel, 'type', ['class' => 'form-control', 'placeholder' => 'Enter Post Type']) ?>
+			<div class="form-group">
+				<?= Html::activeLabel($postModel, 'type') ?>
+				<?= Html::activeInput('text', $postModel, 'type', ['class' => 'form-control blogger-input-post-type', 'placeholder' => 'Enter Post Type']) ?>
+				<div id="predefined-post-types-list"></div>
+			</div>
 		</div>
 	</div>
 </aside>

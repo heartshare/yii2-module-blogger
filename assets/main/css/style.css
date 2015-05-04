@@ -1,3 +1,10 @@
+/*GENERAL*/
+.border-btm {
+	border-bottom: 1px rgba(0,0,0,0.1) solid;
+	padding-bottom: 25px;
+}
+/*=========================================*/
+
 #blogger-post-actions {
 	background: #222222;
 	position: fixed;
