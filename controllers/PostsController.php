@@ -41,6 +41,7 @@ class PostsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'update' => ['post'],
+                    'fetch'  => ['post'],
                 ],
             ],
         ];
@@ -54,6 +55,11 @@ class PostsController extends Controller
         	'posts' => $posts,
             'single' => false,
         ]);
+    }
+
+    public function actionFetch()
+    {
+        return var_dump(Yii::$app->request->post('data'));
     }
 
     public function actionTypes($renderView = true)
@@ -165,11 +171,6 @@ class PostsController extends Controller
         } else {
             return $this->render('error');
         }
-    }
-
-    public function actionTest()
-    {
-        
     }
 
 }

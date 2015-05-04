@@ -88,5 +88,24 @@ $("body").on("click", ".post-type-container-button", function() {
 
 // ====================== END Post Types Fetched through ajax =======================
 
+
+// ================================ Fetch Any  ======================================
+// $('#blogger-input-tag').focus(function() {
+//     var url = $('#blogger-input-tag').data('action');
+//     var data = $('#blogger-input-tag').val();
+//     $.ajax({
+//         url: url,
+//         type: 'POST',
+//         data: {
+//             data : data,
+//         },
+//         beforeSend: function(){
+//         },
+//         success: function(result){
+//             $('#predefined-post-types-list').html(result);
+//         }
+//     });
+// });
+
 });
 

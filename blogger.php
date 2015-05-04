@@ -15,6 +15,7 @@ class blogger extends \yii\base\Module
         parent::init();
 
         Yii::setAlias('@adz', __DIR__ );
+        Yii::setAlias('@blogger', __DIR__ );
 
         $rbacCheck = SettingsSetup::getSettingByKey('rbac');
 
@@ -22,7 +23,5 @@ class blogger extends \yii\base\Module
 		    // @var ../Rbac.php
 	    	Rbac::init();
     	}
-
-    	
     }
 }

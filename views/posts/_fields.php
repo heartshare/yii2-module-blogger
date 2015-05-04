@@ -1,7 +1,7 @@
 <?php
 
 	use yii\helpers\Html;
-	
+	use yii\helpers\Url;
 	use adzadzadz\modules\blogger\assets\CkeditorAsset;
 	CkeditorAsset::register($this);
 ?>
@@ -30,10 +30,32 @@
 			</div>
 		</div>
 		<div class="col-md-12">
-			<div class="form-group">
+			<div class="form-group border-btm">
 				<?= Html::activeLabel($postModel, 'type') ?>
 				<?= Html::activeInput('text', $postModel, 'type', ['class' => 'form-control blogger-input-post-type', 'placeholder' => 'Enter Post Type']) ?>
 				<div id="predefined-post-types-list"></div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="form-group border-btm">
+				<label for="blogger-input-category">Category:</label>
+				<select id="blogger-input-category" type="text" class="form-control" data-action="<?= Url::toRoute(['posts/fetch']) ?>" multiple>
+				  <option value="volvo">Volvo</option>
+				  <option value="saab">Saab</option>
+				  <option value="opel">Opel</option>
+				  <option value="audi">Audi</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="blogger-input-tag">Tags:</label>
+				<select id="blogger-input-tag" type="text" class="form-control" data-action="<?= Url::toRoute(['posts/fetch']) ?>" multiple>
+				  <option value="volvo">Volvo</option>
+				  <option value="saab">Saab</option>
+				  <option value="opel">Opel</option>
+				  <option value="audi">Audi</option>
+				</select>
 			</div>
 		</div>
 	</div>

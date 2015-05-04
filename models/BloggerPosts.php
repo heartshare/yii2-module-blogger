@@ -52,10 +52,10 @@ class BloggerPosts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'title', 'content'], 'required'],
+            [['type', 'title', 'content','slug'], 'required'],
             [['title', 'excerpt', 'content'], 'string'],
             [['status', 'created_at', 'updated_at', 'author_id', 'updater_id'], 'integer'],
-            [['type', 'access_key'], 'string', 'max' => 255]
+            [['type', 'access_key','slug'], 'string', 'max' => 255]
         ];
     }
 
@@ -68,6 +68,7 @@ class BloggerPosts extends \yii\db\ActiveRecord
             'post_id' => 'Post ID',
             'type' => 'Type',
             'title' => 'Title',
+            'slug' => 'Slug',
             'excerpt' => 'Excerpt',
             'content' => 'Content',
             'access_key' => 'Access Key',
