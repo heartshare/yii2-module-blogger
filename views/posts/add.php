@@ -29,10 +29,13 @@
 		            '" . Html::getInputName( $postModel, 'title' ) . "'   : $('#" . Html::getInputId( $postModel, 'title' ) . "').val(),
 		            '" . Html::getInputName( $postModel, 'content' ) . "' : CKEDITOR.instances['" . Html::getInputId( $postModel, 'content' ) . "'].getData(),
 		            '" . Html::getInputName( $postModel, 'excerpt' ) . "' : CKEDITOR.instances['" . Html::getInputId( $postModel, 'excerpt' ) . "'].getData(),
-		            '" . Html::getInputName( $postModel, 'type' ) . "' : $('#" . Html::getInputId( $postModel, 'type' ) . "').val(),
+		            '" . Html::getInputName( $postModel, 'type' ) . "' : $('#" . Html::getInputId( $postModel, 'type' ) . "').val().toLowerCase().replace(' ', '_'),
+		            '" . Html::getInputName( $postModel, 'slug' ) . "' : $('#" . Html::getInputId( $postModel, 'slug' ) . "').val().toLowerCase().replace(' ', '-'),
+		            'category' : $('input[name=\"category\"]').val().toLowerCase().replace(' ', '-'),
 		        },
 		        beforeSend: function(){
 		        	$('#post-update').button('loading');
+		        	$('#post-result').html('');
 		        },
 		        success: function(result){
 		            $('#post-update').button('reset');

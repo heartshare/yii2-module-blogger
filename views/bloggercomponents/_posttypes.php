@@ -5,5 +5,5 @@
 ?>
 
 <?php foreach ($postTypes as $each) { ?>
-	<a href="<?= Url::toRoute(['posts/view', 'postType' => $each->post_type_name]) ?>" class="nav-items"><?= ucfirst($each->post_type_name) ?></a>
+	<a href="<?= Url::toRoute(['posts/view', 'postType' => $each->id]) ?>" class="nav-items"><?= ucfirst($each->name) ?></a>
 <?php } ?>

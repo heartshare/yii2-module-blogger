@@ -72,7 +72,7 @@ $('.blogger-input-post-type').focus(function() {
             buttons = "<h5><strong>Predefined Types:</strong></h5>";
             $.each(JSON.parse(result), function(idx, obj) {
                 buttons += '<button class="btn btn-info btn-sm post-type-container-button">';
-                buttons += obj.post_type_name;
+                buttons += obj.name;
                 buttons += '</button> ';
             });
 
@@ -89,23 +89,24 @@ $("body").on("click", ".post-type-container-button", function() {
 // ====================== END Post Types Fetched through ajax =======================
 
 
-// ================================ Fetch Any  ======================================
-// $('#blogger-input-tag').focus(function() {
-//     var url = $('#blogger-input-tag').data('action');
-//     var data = $('#blogger-input-tag').val();
-//     $.ajax({
-//         url: url,
-//         type: 'POST',
-//         data: {
-//             data : data,
-//         },
-//         beforeSend: function(){
-//         },
-//         success: function(result){
-//             $('#predefined-post-types-list').html(result);
-//         }
-//     });
-// });
-
+// ================================ Category Stuff  ======================================
+$('#blogger-add-new-category-btn').click(function() {
+    var url = $(this).data('action');
+    var data = $('#blogger-add-category').val();
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            component_id : data.toLowerCase().replace(' ', '_'),
+            component_name : data,
+        },
+        beforeSend: function(){
+            $('#post-result').html('');
+        },
+        success: function(result){
+            $('#post-result').html('<div class="alert alert-success">' + result + '<div>');
+        }
+    });
 });
 
+});

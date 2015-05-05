@@ -10,42 +10,49 @@ use adzadzadz\modules\blogger\models\SettingsSetup;
 
 class Post extends BloggerPosts
 {
-	public function addPostType($typeId = null, $typeName = null)
+	public function addPostComponent($settingKey, $id = null, $name = null)
 	{
 		// Fetch Saved Post Types
-		$postTypes = SettingsSetup::getSettingByKey('post_types');
+		$postComponent = SettingsSetup::getSettingByKey($settingKey);
 		
-		$newType[] = [
-			'post_type_id'   => $typeId,
-			'post_type_name' => $typeName,
+		$newComponent[] = [
+			'id'   => $id,
+			'name' => $name,
 		];
 
-		// Insert if 'post_types' does not exist
-		if ($postTypes === null) {
-			return SettingsSetup::addSetting('post_types', json_encode($newType));
+		// Insert if 'postComponent' does not exist
+		if ($postComponent === null) {
+			return SettingsSetup::addSetting($settingKey, json_encode($newComponent));
 		}
 
-		// Convert post_types value back to php array for update
-		$savedPostTypes = json_decode($postTypes['value']);
+		// Convert postComponent value back to php array for update
+		$savedPostComponent = json_decode($postComponent['value']);
 
 		// Re entering post types to the array
-		foreach ($savedPostTypes as $each) {
-			if ($each->post_type_id != $typeId) {
-				$newPostTypeValue[] = [
-					'post_type_id'   => $each->post_type_id,
-					'post_type_name' => $each->post_type_name,
+		foreach ($savedPostComponent as $each) {
+			if ($each->id != $id) {
+				$updateComponent[] = [
+					'id'   => $each->id,
+					'name' => $each->name,
 				];
 			}			
 		}
 
 		// Add the new post type
-		$newPostTypeValue[] = [
-			'post_type_id'   => $typeId,
-			'post_type_name' => $typeName,
+		$updateComponent[] = [
+			'id'   => $id,
+			'name' => $name,
 		];
 
 		// Update
-		return SettingsSetup::updateSettingByKey('post_types', json_encode($newPostTypeValue));
+		return SettingsSetup::updateSettingByKey($settingKey, json_encode($updateComponent));
+	}
+
+	public function getPostComponent($component)
+	{	
+		// Fetch Saved Post Types
+		$postTypes = SettingsSetup::getSettingByKey($component);
+		return json_decode($postTypes['value']);
 	}
 
 	public function getPostTypes()
@@ -70,6 +77,7 @@ class Post extends BloggerPosts
 	public function getAllPosts()
 	{
 		return BloggerPosts::find()
+		->where(['status' => SELF::STATUS_ACTIVE])
         ->indexBy('post_id')
         ->all();
 	}
@@ -77,6 +85,7 @@ class Post extends BloggerPosts
 	public function deletePost($id)
 	{
 		$post = BloggerPosts::findOne($id);
-        return $post->delete();
+        $post->status = SELF::STATUS_DELETED;
+        return $post->save();
 	}
 }

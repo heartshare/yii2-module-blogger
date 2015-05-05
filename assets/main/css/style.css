@@ -3,6 +3,12 @@
 	border-bottom: 1px rgba(0,0,0,0.1) solid;
 	padding-bottom: 25px;
 }
+#blogger-category-set-container .tab-pane {
+	padding-top: 10px;
+}
+.post-type-container-button {
+	margin-bottom: 4px !important;
+}
 /*=========================================*/
 
 #blogger-post-actions {

@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use adzadzadz\modules\blogger\models\Post;
 use adzadzadz\modules\blogger\models\BloggerPosts;
+use yii\helpers\Html;
    
 class PostsController extends Controller
 {
@@ -57,11 +58,6 @@ class PostsController extends Controller
         ]);
     }
 
-    public function actionFetch()
-    {
-        return var_dump(Yii::$app->request->post('data'));
-    }
-
     public function actionTypes($renderView = true)
     {
         $postTypes = Post::getPostTypes();
@@ -69,7 +65,7 @@ class PostsController extends Controller
             return '';
         }
         if ($renderView === true) {
-            return $this->renderPartial('@adz/views/bloggercomponents/_posttypes',[
+            return $this->renderPartial('@blogger/views/bloggercomponents/_posttypes',[
                 'postTypes' => $postTypes,
             ]);    
         }
@@ -98,7 +94,7 @@ class PostsController extends Controller
     		return $this->render('error');
     	}
 
-    	return $this->render('edit',[
+    	return $this->render('@blogger/views/posts/edit',[
     		'post' => $post,
             'postModel' => $post,
     	]);
@@ -108,13 +104,17 @@ class PostsController extends Controller
     {
         if(Yii::$app->request->isAjax) {
              $postModel = BloggerPosts::findOne($id);
-            
-            if(!Post::addPostType(Yii::$app->request->post('BloggerPosts')['type'], Yii::$app->request->post('BloggerPosts')['type'])) return 'Couldn\'t save Post Type.';
+            return var_dmup(Yii::$app->request->post('category'));
+            if(!Post::addPostComponent(
+                'post_types', 
+                Yii::$app->request->post('BloggerPosts')['type'],
+                str_replace("_"," ",Yii::$app->request->post('BloggerPosts')['type'])
+            )) return 'Couldn\'t save Post Type.';
 
             if ($postModel->load(Yii::$app->request->post()) && $postModel->save()) {          
                return 'Saved';
             }            
-            return yii\helpers\Html::errorSummary($postModel, ['class' => 'errors']);
+            return Html::errorSummary($postModel, ['class' => 'errors']);
         }
 
         throw new BadRequestHttpException();
@@ -124,14 +124,20 @@ class PostsController extends Controller
     {   
         $postModel = new BloggerPosts;
         if(Yii::$app->request->isAjax) {
-            if(!Post::addPostType(Yii::$app->request->post('BloggerPosts')['type'], Yii::$app->request->post('BloggerPosts')['type'])) return 'Couldn\'t save Post Type.';
+            
+            if(!Post::addPostComponent(
+                'post_types', 
+                Yii::$app->request->post('BloggerPosts')['type'],
+                str_replace("_"," ",Yii::$app->request->post('BloggerPosts')['type'])
+            )) return 'Couldn\'t save Post Type.';
+
             if ($postModel->load(Yii::$app->request->post()) && $postModel->save()) {          
                return 'Saved';
             }
-            return yii\helpers\Html::errorSummary($postModel, ['class' => 'errors']);
+            return Html::errorSummary($postModel, ['class' => 'errors']);
         }
         if(empty(Yii::$app->request->post())) {
-            return $this->render('add', [
+            return $this->render('@blogger/views/posts/add', [
                 'postModel' => $postModel,
             ]);
         }          
@@ -158,14 +164,14 @@ class PostsController extends Controller
             if ($postType === null) {
                 $allPosts = Post::getAllPosts();
 
-                return $this->render('view', [
+                return $this->render('@blogger/views/posts/view', [
                     'posts' => $allPosts,
                 ]);
             }
 
             $posts = Post::getPostsByType($postType);
 
-            return $this->render('view', [
+            return $this->render('@blogger/views/posts/view', [
                 'posts' => $posts,
             ]);
         } else {

@@ -59,7 +59,7 @@ class m150404_022448_make_blogger_db_requirements extends Migration
         $this->createTable('{{%blogger_settings}}', [
             'id' => 'pk',
             'key' => Schema::TYPE_STRING . ' NOT NULL',
-            'value' => Schema::TYPE_STRING . ' NOT NULL',
+            'value' => Schema::TYPE_TEXT . ' NOT NULL',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
             'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
             'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
