@@ -50,10 +50,10 @@
 					<li role="presentation"><a href="#blogger-add-category" aria-controls="blogger-add-category" role="tab" data-toggle="tab">Add</a></li>
 				</ul>
 				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="blogger-set-post-category" data-action="<?= Url::toRoute(['components/fetch']) ?>"></div>
+					<div role="tabpanel" class="tab-pane active" id="blogger-set-post-category" data-action="<?= Url::toRoute(['components/fetchterms', 'type' => 'category']) ?>"></div>
 					<div role="tabpanel" class="tab-pane" id="blogger-add-category">
-						<input type="text" class="form-control" id="blogger-add-category" placeholder="Category">
-						<button id="blogger-add-new-category-btn" class="btn btn-primary btn-sm pull-right" data-action="<?= Url::toRoute(['components/update', 'component' => 'category']) ?>" >Add</button>
+						<input type="text" class="form-control" id="blogger-add-category-input" placeholder="Category">
+						<button id="blogger-add-new-category-btn" class="btn btn-primary btn-sm pull-right" data-action="<?= Url::toRoute(['components/insertterm']) ?>" >Add</button>
 						<div class="clearfix"></div>
 					</div>
 				</div>

@@ -7,6 +7,9 @@ use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use adzadzadz\modules\blogger\models\Post;
+use adzadzadz\modules\blogger\models\BloggerTerms;
+use adzadzadz\modules\blogger\models\BloggerTermAssignments;
+use yii\helpers\Html;
 
 class ComponentsController extends Controller
 {
@@ -28,10 +31,25 @@ class ComponentsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'update' => ['post'],
-                    'fetch'  => ['post'],
+                    'fetchterms'  => ['post'],
+                    'insertterm'  => ['post'],
                 ],
             ],
         ];
+    }
+
+    public function actionInsertterm()
+    {
+        if(Yii::$app->request->isAjax) {
+            $postTerms = new BloggerTerms;
+
+            if ($postTerms->load(Yii::$app->request->post()) && $postTerms->save()) {
+                return 'Saved';
+            }
+            return Html::errorSummary($postTerms, ['class' => 'errors']);
+        }
+
+        throw new BadRequestHttpException();
     }
 
     public function actionUpdate($component = null)
@@ -52,16 +70,19 @@ class ComponentsController extends Controller
 	    throw new BadRequestHttpException();
     }
 
-    public function actionFetch()
-    {
-    	if(Yii::$app->request->isAjax) {
-	        $postComponent = Post::getPostComponent(Yii::$app->request->post('component'));
-	        if ($postComponent == null) {
-	            return 'Component is not available.';
-	        }
-	        return json_encode($postComponent);
+    public function actionFetchterms($type)
+    {   
+        $postTerms = BloggerTerms::find()->where(['type' => $type, 'status' => BloggerTerms::STATUS_ACTIVE])->all();
+        if ($postTerms == null) {
+            return "Nothing found";
+        }
+        if(Yii::$app->request->isAjax) {
+            return $this->renderPartial('@blogger/views/bloggercomponents/_postterms',[
+                // 'postTermsModel' => $postTermsModel,
+                'postTerms' => $postTerms,
+            ]);
 	    }
 
-	    throw new BadRequestHttpException();
+	    return $postTerms;
     }
 }

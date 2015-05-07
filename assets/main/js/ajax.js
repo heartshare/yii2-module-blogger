@@ -92,13 +92,13 @@ $("body").on("click", ".post-type-container-button", function() {
 // ================================ Category Stuff  ======================================
 $('#blogger-add-new-category-btn').click(function() {
     var url = $(this).data('action');
-    var data = $('#blogger-add-category').val();
+    var data = $('#blogger-add-category-input').val();
     $.ajax({
         url: url,
         type: 'POST',
         data: {
-            component_id : data.toLowerCase().replace(' ', '_'),
-            component_name : data,
+            'BloggerTerms[type]' : 'category',
+            'BloggerTerms[name]' : data,
         },
         beforeSend: function(){
             $('#post-result').html('');
@@ -108,5 +108,20 @@ $('#blogger-add-new-category-btn').click(function() {
         }
     });
 });
+
+if ( $("#blogger-set-post-category").length ) {
+
+    var url = $("#blogger-set-post-category").data('action');
+    $.ajax({
+        url: url,
+        type: 'POST',
+        beforeSend: function(){
+            $('#blogger-set-post-category').html('');
+        },
+        success: function(result){
+            $('#blogger-set-post-category').html(result);
+        }
+    });
+}
 
 });

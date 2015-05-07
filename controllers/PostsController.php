@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use adzadzadz\modules\blogger\models\Post;
 use adzadzadz\modules\blogger\models\BloggerPosts;
+use adzadzadz\modules\blogger\models\BloggerTerms;
 use yii\helpers\Html;
    
 class PostsController extends Controller
@@ -104,7 +105,7 @@ class PostsController extends Controller
     {
         if(Yii::$app->request->isAjax) {
              $postModel = BloggerPosts::findOne($id);
-            return var_dmup(Yii::$app->request->post('category'));
+            
             if(!Post::addPostComponent(
                 'post_types', 
                 Yii::$app->request->post('BloggerPosts')['type'],
@@ -179,4 +180,8 @@ class PostsController extends Controller
         }
     }
 
+    public function actionTest()
+    {
+        return var_dump(BloggerTerms::find()->where(['type' => 'category', 'status' => BloggerTerms::STATUS_ACTIVE])->all());
+    }
 }

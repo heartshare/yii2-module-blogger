@@ -31,7 +31,6 @@
 		            '" . Html::getInputName( $postModel, 'excerpt' ) . "' : CKEDITOR.instances['" . Html::getInputId( $postModel, 'excerpt' ) . "'].getData(),
 		            '" . Html::getInputName( $postModel, 'type' ) . "' : $('#" . Html::getInputId( $postModel, 'type' ) . "').val().toLowerCase().replace(' ', '_'),
 		            '" . Html::getInputName( $postModel, 'slug' ) . "' : $('#" . Html::getInputId( $postModel, 'slug' ) . "').val().toLowerCase().replace(' ', '-'),
-		            'category' : $('input[name=\"category\"]').val().toLowerCase().replace(' ', '-'),
 		        },
 		        beforeSend: function(){
 		        	$('#post-update').button('loading');

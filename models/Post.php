@@ -66,7 +66,7 @@ class Post extends BloggerPosts
 	{
 		return BloggerPosts::find()
 	    ->where(['type' => $type, 'status' => SELF::STATUS_ACTIVE])
-	    ->all();;
+	    ->all();
 	}
 
 	public function getPostById($id)
