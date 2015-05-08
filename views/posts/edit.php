@@ -19,37 +19,6 @@
 		'post'      => $post,
 	]);
 
-	$jsScript = "
-		
-		$('#post-update').click(function (){
-			var url = '" . Url::toRoute(['posts/update', 'id' => $post['post_id'] ]) . "';
-			$.ajax({
-		        url: url,
-		        type: 'POST',
-		        data: {
-		            'BloggerPosts[title]'   : $('#bloggerposts-title' ).val(),
-		            'BloggerPosts[content]' : CKEDITOR.instances['bloggerposts-content'].getData(),
-		            'BloggerPosts[excerpt]' : CKEDITOR.instances['bloggerposts-excerpt'].getData(),
-		            'BloggerPosts[type]' : $('#bloggerposts-type').val().toLowerCase().replace(' ', '_'),
-		            'BloggerPosts[slug]' : $('#bloggerposts-slug').val().toLowerCase().replace(' ', '-'),
-		        },
-		        beforeSend: function(){
-		        	$('#post-update').button('loading');
-		        	$('#post-result').html('');
-		        },
-		        success: function(result){
-		            $('#post-update').button('reset');
-				    if(result != 'Saved') {
-					    $('#post-result').html('<div class=\"alert alert-danger\">' + result + '</div>');
-					} else {
-						$('#post-result').html('<div class=\"alert alert-success\">' + result + '</div>');
-					}
-				},
-		    });
-		} );
-				
-	";
-
-	$this->registerJs($jsScript, View::POS_READY, 'post-update-ajax') 
-
 ?>
+
+<div id="post-update-url" data-action="<?= Url::toRoute(['posts/update', 'id' => $post['post_id'] ]) ?>"></div>

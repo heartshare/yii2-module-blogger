@@ -19,6 +19,9 @@ use Yii;
  */
 class BloggerTermAssignments extends \yii\db\ActiveRecord
 {
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 10;
+    
     /**
      * @inheritdoc
      */
@@ -55,5 +58,22 @@ class BloggerTermAssignments extends \yii\db\ActiveRecord
             'author_id' => 'Author ID',
             'updater_id' => 'Updater ID',
         ];
+    }
+
+    public function updateAssignments($term_id = null, $type = null, $post_id = null)
+    {   
+        if ($post_id != null) {
+            $postTerms = BloggerTermAssignments::find()->where(['post_id' => $post_id, 'type' => 'category', 'status' => SELF::STATUS_ACTIVE])->all();
+            if (!empty($postTerms)) {
+
+            } else {
+                $postTerms = new BloggerTermAssignments;
+                $postTerms->post_id = '';
+                $
+            }
+
+        }
+        
+        return $postTerms;
     }
 }

@@ -10,6 +10,7 @@ use yii\web\BadRequestHttpException;
 use adzadzadz\modules\blogger\models\Post;
 use adzadzadz\modules\blogger\models\BloggerPosts;
 use adzadzadz\modules\blogger\models\BloggerTerms;
+use adzadzadz\modules\blogger\models\BloggerTermAssignments;
 use yii\helpers\Html;
    
 class PostsController extends Controller
@@ -182,6 +183,6 @@ class PostsController extends Controller
 
     public function actionTest()
     {
-        return var_dump(BloggerTerms::find()->where(['type' => 'category', 'status' => BloggerTerms::STATUS_ACTIVE])->all());
+        return var_dump(BloggerTermAssignments::updateAssignments());
     }
 }

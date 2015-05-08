@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+// USER PERMISSIONS
 $('#get-user-permissions').click(function (){
 	var url = $('#assigned-user-form').data('action');
 	$.ajax({
@@ -37,6 +38,65 @@ $('#button-delete-user-permission').click(function (){
 		}
     });
 } );
+// END USER PERMISSIONS
+
+// UPDATE POST
+$('#post-update').click(function (){
+    var url = $('#post-update-url').data('action');
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            'BloggerPosts[title]'   : $('#bloggerposts-title' ).val(),
+            'BloggerPosts[content]' : CKEDITOR.instances['bloggerposts-content'].getData(),
+            'BloggerPosts[excerpt]' : CKEDITOR.instances['bloggerposts-excerpt'].getData(),
+            'BloggerPosts[type]' : $('#bloggerposts-type').val().toLowerCase().replace(' ', '_'),
+            'BloggerPosts[slug]' : $('#bloggerposts-slug').val().toLowerCase().replace(' ', '-'),
+        },
+        beforeSend: function(){
+            $('#post-update').button('loading');
+            $('#post-result').html('');
+        },
+        success: function(result){
+            $('#post-update').button('reset');
+            if(result != 'Saved') {
+                $('#post-result').html('<div class=\"alert alert-danger\">' + result + '</div>');
+            } else {
+                $('#post-result').html('<div class=\"alert alert-success\">' + result + '</div>');
+            }
+        },
+    });
+} );
+// END UPDATE POST
+
+// INSERT POST
+$('#post-update').click(function (){
+    var url = $('#post-update-url').data('action');
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            'BloggerPosts[title]'   : $('#bloggerposts-title' ).val(),
+            'BloggerPosts[content]' : CKEDITOR.instances['bloggerposts-content'].getData(),
+            'BloggerPosts[excerpt]' : CKEDITOR.instances['bloggerposts-excerpt'].getData(),
+            'BloggerPosts[type]' : $('#bloggerposts-type').val().toLowerCase().replace(' ', '_'),
+            'BloggerPosts[slug]' : $('#bloggerposts-slug').val().toLowerCase().replace(' ', '-'),
+        },
+        beforeSend: function(){
+            $('#post-update').button('loading');
+            $('#post-result').html('');
+        },
+        success: function(result){
+            $('#post-update').button('reset');
+            if(result != 'Saved') {
+                $('#post-result').html('<div class=\"alert alert-danger\">' + result + '</div>');
+            } else {
+                $('#post-result').html('<div class=\"alert alert-success\">' + result + '</div>');
+            }
+        },
+    });
+} );
+// END INSERT POST
 
 // ======================== Post Types Fetched through ajax ========================
 

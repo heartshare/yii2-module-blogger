@@ -70,15 +70,20 @@ class ComponentsController extends Controller
 	    throw new BadRequestHttpException();
     }
 
-    public function actionFetchterms($type)
+    public function actionFetchterms($type, $post_id = null)
     {   
+        $postTermsAssignments = null;
         $postTerms = BloggerTerms::find()->where(['type' => $type, 'status' => BloggerTerms::STATUS_ACTIVE])->all();
+        if ($post_id != null) {
+            $postTermsAssignments = BloggerTermAssignments::find()->where(['type' => $type, 'post_id' => $post_id, 'status' => BloggerTermAssignments::STATUS_ACTIVE])->all();            
+
+        }        
         if ($postTerms == null) {
             return "Nothing found";
         }
         if(Yii::$app->request->isAjax) {
             return $this->renderPartial('@blogger/views/bloggercomponents/_postterms',[
-                // 'postTermsModel' => $postTermsModel,
+                'postTermsAssignments' => $postTermsAssignments,
                 'postTerms' => $postTerms,
             ]);
 	    }

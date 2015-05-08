@@ -18,36 +18,6 @@
 		'postModel' => $postModel
 	]); 
 
-	$jsScript = "
-		
-		$('#post-update').click(function (){
-			var url = '" . Url::toRoute(['posts/insert']) . "';
-			$.ajax({
-		        url: url,
-		        type: 'POST',
-		        data: {
-		            '" . Html::getInputName( $postModel, 'title' ) . "'   : $('#" . Html::getInputId( $postModel, 'title' ) . "').val(),
-		            '" . Html::getInputName( $postModel, 'content' ) . "' : CKEDITOR.instances['" . Html::getInputId( $postModel, 'content' ) . "'].getData(),
-		            '" . Html::getInputName( $postModel, 'excerpt' ) . "' : CKEDITOR.instances['" . Html::getInputId( $postModel, 'excerpt' ) . "'].getData(),
-		            '" . Html::getInputName( $postModel, 'type' ) . "' : $('#" . Html::getInputId( $postModel, 'type' ) . "').val().toLowerCase().replace(' ', '_'),
-		            '" . Html::getInputName( $postModel, 'slug' ) . "' : $('#" . Html::getInputId( $postModel, 'slug' ) . "').val().toLowerCase().replace(' ', '-'),
-		        },
-		        beforeSend: function(){
-		        	$('#post-update').button('loading');
-		        	$('#post-result').html('');
-		        },
-		        success: function(result){
-		            $('#post-update').button('reset');
-				    if(result != 'Saved') {
-					    $('#post-result').html('<div class=\"alert alert-danger\">' + result + '</div>');
-					} else {
-						$('#post-result').html('<div class=\"alert alert-success\">' + result + '</div>');
-					}
-				},
-		    });
-		} );
-				
-	";
-
-	 $this->registerJs($jsScript, View::POS_READY, 'post-update-ajax');
 ?>
+
+<div id="post-update-url" data-action="<?= Url::toRoute(['posts/insert']) ?>"></div>
